@@ -19,7 +19,8 @@ When you want access to Firmata features, you can use pymata-aio without alterin
 There is even a [developing project](https://www.npmjs.com/package/firmata-pi) to make the RaspberryPi a Firmata device.
 I expect that most developers will eventually migrate toward Firmata as it will standardize most of their software.
 
----
+Installation
+-----
 
 The base GPIO module will import the correct interface for your platform based on what Python modules it can import.
 It will try to load RPi.GPIO before loading the pymata-aio interface and searching for an Arduino.
@@ -64,8 +65,6 @@ The simulator will output all of the states of your pins when it starts and will
 For each character entered that matches a named pin, it will toggle that pin's digital state.
 When all characters have been processed, the simulator will print the current GPIO state.
 If any simulated GPIO function is invoked, it will take appropriate action and print the current GPIO state.
-
----
 
 Known issues
 -----
