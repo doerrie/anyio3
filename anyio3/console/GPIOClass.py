@@ -3,7 +3,6 @@
 # This class simulates 26 GPIO pins on the console
 # When the class is instantiated
 
-import sys
 import threading
 
 LOW = 0
