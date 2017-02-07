@@ -6,13 +6,19 @@ The [anyio](https://github.com/whaleygeek/anyio) package developed by David Whal
 It allows developers without a RaspberryPi to simulate digital GPIO pins or extend their desktop computer with digital GPIO pins using a 3.3v Arduino attached via USB.
 His excellent "Adventures in Minecraft" book uses this to teach children simple electronics projects that interact with Minecraft for RaspberryPi or appropriate simulator mod.
 
-For owners of an Arduino, the anyio firmware lacks analog support and accurate timing information because these features unavailable on the RaspberryPi.
-[Firmata](https://github.com/firmata) is a standard protocol and [Arduino firmware](https://github.com/firmata/arduino) that supports these features and support in Python 3 is provided by the [python-aio](https://github.com/MrYsLab/pymata-aio) package.
-The anyio protocol and Firmata protocol are not compatible, so if you upgrade your Arduino all of your previous programs will break.
+There are a number of issues with the anyio package and firmware.
+The anyio Arduino firmware lacks a lot of features including analog input, PWM, and accurate timing.
+[Firmata](https://github.com/firmata) is a standard protocol and [Arduino firmware](https://github.com/firmata/arduino) that supports these features and Python 3 is supported by the [python-aio](https://github.com/MrYsLab/pymata-aio) package.
+The anyio protocol and Firmata protocol are not compatible, so upgrading your Arduino with the enhanced firmware will break your old programs.
 Additionally, there have been difficulties getting anyio to run in Python 3.
-This project was created to address these issues.
 
-This module is intended to work on a RaspberryPi or a PC using an Arduino.
+The anyio3 module solves these problems by simulating the anyio functionality using pymata-aio.
+It works in Python 3 on either a RaspberryPi or desktop computer.
+It will attempt to autodetect your Firmata Arduino without a serial port dance.
+When you want access to Firmata features, you can use pymata-aio without altering your Arduino's firmware.
+There is even a [developing project](https://www.npmjs.com/package/firmata-pi) to make the RaspberryPi a Firmata device.
+I expect that most developers will eventually migrate toward Firmata as it will standardize most of their software.
+
 The base GPIO module will import the correct interface for your platform based on what Python modules it can import.
 It will try to load RPi.GPIO before loading the pymata-aio interface and searching for an Arduino.
 If pymata-aio is not installed or an Arduino running Firmata can not be located, it will exit.
