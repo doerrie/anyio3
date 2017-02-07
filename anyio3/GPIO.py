@@ -34,6 +34,7 @@ if not _done:
         print("Success")
         _done = True
     except ImportError:
+        print("")
         print("Failed")
         pass
 
@@ -41,11 +42,15 @@ if not _done:
     try:
         print("Loading .console.GPIO")
         from .console.GPIO import *
-        print("Success")
+        print("")
+        print("anyio3 could not automatically locate any hardware on this computer.")
+        print("You have been redirected to the console simulator.")
+        print("If you do have hardware, please check the anyio3 README and known issues.")
+        sleep(2)
         _done = True
     except ImportError:
         print("Failed")
 
 if not _done:
-    print("Could not instantiate a GPIO driver.  Exiting ...")
+    print("Could not instantiate a GPIO driver.  Please check your Python environement ...")
     sys.exit(0)
