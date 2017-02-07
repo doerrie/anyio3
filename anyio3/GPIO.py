@@ -29,8 +29,8 @@ if not _done:
 
 if not _done:
     try:
-        print("Loading pymata3.GPIO")
-        from pymata3.GPIO import *
+        print("Loading .pymata3.GPIO")
+        from .pymata3.GPIO import *
         print("Success")
         _done = True
     except ImportError:
