@@ -14,8 +14,8 @@ _done = False
 # class manually, this is the place to do it.  For example, uncomment the
 # following two lines to force the pymata3 interface to load.
 
-from .pymata3.GPIO import *
-_done = True
+#from .pymata3.GPIO import *
+#_done = True
 
 if not _done:
     try:
