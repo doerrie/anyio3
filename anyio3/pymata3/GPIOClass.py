@@ -14,8 +14,8 @@ HI = 1
 IN = Constants.INPUT
 OUT = Constants.OUTPUT
 
-BRD = 8
-BCM = 16
+BRD = 0
+BCM = 1
 
 class GpioClass:
 

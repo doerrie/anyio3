@@ -8,9 +8,6 @@ try:
 except TypeError:
     pass
 
-if _gpio == None :
-    raise ImportError()
-
 def setmode(mode):
     _gpio.setmode(mode)
 

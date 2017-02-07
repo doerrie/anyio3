@@ -38,5 +38,14 @@ if not _done:
         pass
 
 if not _done:
+    try:
+        print("Loading .console.GPIO")
+        from .console.GPIO import *
+        print("Success")
+        _done = True
+    except ImportError:
+        print("Failed")
+
+if not _done:
     print("Could not instantiate a GPIO driver.  Exiting ...")
     sys.exit(0)
