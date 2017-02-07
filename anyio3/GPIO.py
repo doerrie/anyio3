@@ -46,7 +46,6 @@ if not _done:
         print("anyio3 could not automatically locate any hardware on this computer.")
         print("You have been redirected to the console simulator.")
         print("If you do have hardware, please check the anyio3 README and known issues.")
-        sleep(2)
         _done = True
     except ImportError:
         print("Failed")

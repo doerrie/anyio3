@@ -5,7 +5,6 @@
 
 import sys
 import threading
-import time
 
 LOW = 0
 HI = 1
@@ -16,10 +15,23 @@ OUT = 1
 BRD = 0
 BCM = 1
 
+class CommandInput(threading.Thread):
+    def __init__(self,gpio):
+        super(CommandInput, self).__init__()
+        self.gpio = gpio
+
+    def run(self):
+        while True:
+            command = input().strip()
+            for c in command:
+                pin = ord(c)-ord('a')
+                self.gpio._togglePin(pin)
+            self.gpio._refresh()
 
 class GpioClass:
 
     def __init__(self, num_pins=26):
+        self._lock = threading.Lock()
         self.LOW = LOW
         self.HI = HI
         self.IN = IN
@@ -31,7 +43,19 @@ class GpioClass:
         for i in range(num_pins):
             self.pin_states.append(self.IN)
             self.pin_values.append(self.LOW)
+        self.t = CommandInput(self)
+        self.t.start()
         pass
+
+    def _pinHi(self, pin):
+        return pin == True or pin == self.HI or pin == 1
+
+    def _togglePin(self, pin):
+        if self.pin_states[pin] == self.IN:
+            if self._pinHi(self.pin_values[pin]):
+                self._output(pin, self.LOW)
+            else:
+                self._output(pin, self.HI)
 
     def setmode(self, mode):
         pass
@@ -47,30 +71,34 @@ class GpioClass:
     def input(self, channel):
         return self.pin_values[channel]
 
-    def output(self, channel, value):
+    def _output(self, channel, value):
         v = self.LOW
-        if value == True or value == self.HI or value == 1:
+        if self._pinHi(value):
             v = self.HI
         self.pin_values[channel]=v
+
+    def output(self, channel, value):
+        self._output(channel, value)
         self._refresh()
 
     def cleanup(self):
         pass
 
     def _refresh(self):
-        print("")
-        for i in range(len(self.pin_states)):
-            print(chr(ord('a')+i), end="")
-        print("")
-        for state in self.pin_states:
-            s = "I"
-            if state:
-                s = "O"
-            print(s, end="")
-        print("")
-        for value in self.pin_values:
-            v = "0"
-            if value :
-                v = "1"
-            print(v, end="")
-        print("")
+        with self._lock:
+            print("")
+            for i in range(len(self.pin_states)):
+                print(chr(ord('a')+i), end="")
+            print("")
+            for state in self.pin_states:
+                s = "I"
+                if state:
+                    s = "O"
+                print(s, end="")
+            print("")
+            for value in self.pin_values:
+                v = "0"
+                if value :
+                    v = "1"
+                print(v, end="")
+            print("")
