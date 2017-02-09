@@ -17,10 +17,17 @@ _done = False
 #from .pymata3.GPIO import *
 #_done = True
 
+RPI = "RaspberryPi"
+PYMATA = "Pymata3"
+CONSOLE = "Console"
+
+hardware = None
+
 if not _done:
     try:
         print("Loading RPi.GPIO")
         from RPi.GPIO import *
+        hardware = RPI
         print("Success")
         _done = True
     except ImportError:
@@ -31,6 +38,7 @@ if not _done:
     try:
         print("Loading .pymata3.GPIO")
         from .pymata3.GPIO import *
+        hardware = PYMATA
         print("Success")
         _done = True
     except ImportError:
@@ -46,6 +54,7 @@ if not _done:
         print("anyio3 could not automatically locate any hardware on this computer.")
         print("You have been redirected to the console simulator.")
         print("If you do have hardware, please check the anyio3 README and known issues.")
+        hardware = CONSOLE
         _done = True
     except ImportError:
         print("Failed")
