@@ -22,7 +22,11 @@ There is even a [developing project](https://www.npmjs.com/package/firmata-pi) t
 Installation
 -----
 
-The dependencies required vary by your base platform.
+If you are using an Arduino, you must install the "StandardFirmataPlus" firmware onto your Arduino.
+This firmware is included in the [Arduino IDE](https://www.arduino.cc/en/Main/Software) and can be opened by *File -> Examples -> Firmata -> StandardFirmataPlus*.
+Simply upload that firmware using the instructions that came with your Arduino.
+
+The python dependencies required vary by your base platform.
 RaspberryPi users should ensure that a package defining 'RPi.GPIO' is installed.
 I believe the current package is 'RPIO'.
 To do this, run the following command:
