@@ -16,7 +16,6 @@ Reasons to use anyio3:
 * Single import auto-detects RaspberryPi, Firmata Arduino device, or falls back to a console simulator.
   * Determine which module is loaded by comparing GPIO.hardware to GPIO.RPI, GPIO.PYMATA, and GPIO.CONSOLE.
 
-
 There is even a [developing project](https://www.npmjs.com/package/firmata-pi) to make the RaspberryPi a Firmata device.
 
 Installation
@@ -35,7 +34,7 @@ To do this, run the following command:
 pip install RPIO
 ~~~
 
-Arduino users should ensure that pymata-aio is installed.
+Arduino users should ensure that 'pymata-aio' is installed.
 To do this, run the following command:
 
 ~~~ sh
@@ -69,3 +68,5 @@ If you are still using Python 2 and would like to use Firmata, please consider u
 
 The bukkit mod and canary mod frameworks for Minecraft are no longer maintained due to licensing issues.
 If you are having difficulty getting these mods working for current Minecraft versions, consider using the [Rasperry Jam Mod](https://github.com/arpruss/raspberryjammod).
+
+I also have a [mini-howto](AdvInMCFromScratch.md) build your own Adventures in Minecraft Starter Kit from Scratch using GitHub software.
