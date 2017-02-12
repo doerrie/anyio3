@@ -1,22 +1,37 @@
 anyio3: A Python 3 anyio replacement using either RPi.GPIO or pymata-aio
 =====
 
-This project aims to replace anyio with a module that is compatible with Python 3 and the Firmata protocol.
-The [anyio](https://github.com/whaleygeek/anyio) package developed by David Whale simulates the 5 most common functions of the RPi.GPIO interface.
-It allows developers without a RaspberryPi to simulate digital GPIO pins or extend their desktop computer with digital GPIO pins using a 3.3v Arduino attached via USB.
-His excellent "Adventures in Minecraft" book uses this to teach children simple electronics projects that interact with Minecraft for RaspberryPi or appropriate simulator mod.
-
-Reasons to use anyio3:
+Reasons to use anyio3 instead of anyio:
 * Works in Python 3
 * Speaks the [Firmata](https://github.com/firmata) protocol over USB.
-  * Firmata supports Digital and Analog GPIO, PWM, I2C, accurate timing, and much more!
-  * Upgrade to these features using [pymata-aio](https://github.com/MrYsLab/pymata-aio)
-  * Remain compatible with anyio scripts without needing the anyio firmware.
+  * Firmata supports digital and analog GPIO, PWM, I2C, accurate timing, and much more!
+  * Upgrade to these features at any time using [pymata-aio](https://github.com/MrYsLab/pymata-aio)
+  * Remain compatible with anyio scripts after upgrading without changing your firmware.
 * Uses the "StandardFirmataPlus" [Arduino firmware](https://github.com/firmata/arduino) available with the Arduino toolkit.
-* Single import auto-detects RaspberryPi, Firmata Arduino device, or falls back to a console simulator.
+* Plug-and-play detection of your Arduino Firmata device.
+* Single import auto-detects RaspberryPi and Firmata Arduino device, or falls back to a console simulator.
   * Determine which module is loaded by comparing GPIO.hardware to GPIO.RPI, GPIO.PYMATA, and GPIO.CONSOLE.
 
-There is even a [developing project](https://www.npmjs.com/package/firmata-pi) to make the RaspberryPi a Firmata device.
+This project replaces anyio with a module that is compatible with Python 3 and uses the Firmata protocol and firmwares.
+The original [anyio](https://github.com/whaleygeek/anyio) package developed by David Whale allows developers without a RaspberryPi to simulate digital GPIO pins or use the digital GPIO pins of a 3.3v Arduino attached via USB.
+The excellent "Adventures in Minecraft" book uses anyio to teach children simple electronics projects that interact with Minecraft for RaspberryPi or appropriate simulator mod.
+
+The anyio package simulates the 5 most common functions of the RPi.GPIO interface.
+These functions are either connected to a console GPIO simulator or to the anyio Arduino firmware implementing the anyio serial protocol.
+While the anyio firmware and protocol are sufficient to run the exercises in the book, they are very limited.
+The anyio package does not support analog pins, I2C, or PWM and the serial protocol and firmware reflect these limitations.
+Additionally there have been reported difficulties running anyio in Python 3.
+
+A solution to these problems already exists.
+[Firmata](https://github.com/firmata) is a advanced GPIO serial protocol and there is an [Arduino firmware](https://github.com/firmata/arduino) available.
+Better still, Firmata is available for many hardware platforms; there is even ongoing work to build a [Firmata Firmware for RaspberryPi](https://www.npmjs.com/package/firmata-pi) .
+The [pymata-aio](https://github.com/MrYsLab/pymata-aio) package provides Python 3 with a rich interface to any Firmata device.
+Moving forward, Firmata should be the serial protocol and firmware of choice.
+Python developers should be using pymata-aio directly to interact with hardware in an abstract way.
+
+Developers learning Python from "Adventures in Minecraft" will still need access to an anyio-like library as they learn.
+As they advance, older anyio programs should continue to work alongside pymata-aio programs while using the same firmware and serial protocol.
+This project bridges that gap by using pymata-aio to provide a compatible anyio interface while remaining easy to use.
 
 Installation
 -----
@@ -55,11 +70,13 @@ For each character entered that matches a named pin, it will toggle that pin's d
 When all characters have been processed, the simulator will print the current GPIO state.
 If any simulated GPIO function is invoked, it will take appropriate action and print the current GPIO state.
 
-Known issues
+Known issues and Bugs
 -----
 
 The Python GUI, called "IDLE", does not preserve multi-threading.
 If you are using the console simulator, please run your program from a true console.
+
+If you have any problems, please use the [GitHub issue tracker for anyio3](https://github.com/doerrie/anyio3/issues).
 
 Additional Notes
 -----
