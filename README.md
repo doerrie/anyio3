@@ -22,7 +22,7 @@ There is even a [developing project](https://www.npmjs.com/package/firmata-pi) t
 Installation
 -----
 
-The dependencies required vary by your base platform.\
+The dependencies required vary by your base platform.
 RaspberryPi users should ensure that a package defining 'RPi.GPIO' is installed.
 I believe the current package is 'RPIO'.
 To do this, run the following command:
