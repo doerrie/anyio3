@@ -17,4 +17,4 @@ You should now have a kit that is compatible with  Adventures in Minecraft with 
 * Use the 'anyio3' module wherever you would use 'anyio'.
 * Use the 'anyio3.GPIO' module wherever you would use 'RPi.GPIO'
 
-As mentioned in the [README](https://github.com/doerrie/anyio3/README.md), you can configure pins for each type of hardware by querying GPIO.hardware for what driver is in use.
+As mentioned in the [README](README.md), you can configure pins for each type of hardware by querying GPIO.hardware for what driver is in use.
