@@ -22,6 +22,7 @@ There is even a [developing project](https://www.npmjs.com/package/firmata-pi) t
 Installation
 -----
 
+The dependencies required vary by your base platform.\
 RaspberryPi users should ensure that a package defining 'RPi.GPIO' is installed.
 I believe the current package is 'RPIO'.
 To do this, run the following command:
@@ -37,21 +38,10 @@ To do this, run the following command:
 pip install pymata-aio
 ~~~
 
-If you have a package providing simulated RPi.GPIO commands, it will be loaded first.
-You can still load the internal class and continue using everything as you might expect.
-
-~~~ python
-from anyio3.pymata3.GPIOClass import GpioClass
-GPIO = GpioClass()
-~~~
-
-You may also specify a serial device and the time it takes for your arduino to reset.
-The Leonardo based Arduinos may set arduino_wait to 2.
-
-~~~ python
-from anyio3.pymata3.GPIOClass import GpioClass
-GPIO = GpioClass(com_port=None, arduino_wait=5)
-~~~
+To use anyio3, simply copy the *anyio3* directory to your minecraft script directory.
+I highly recommend using the [Rasperry Jam Mod](https://github.com/arpruss/raspberryjammod) for all desktop computers.
+It contains a pre-configured script folder in *.minecraft/mcpipy* where you should install *anyio3*.
+In addition to being very easy to configure, the RaspberyJamMod allows you to run your scripts within Minecraft using the **/py** command.
 
 Console Simulator
 -----
